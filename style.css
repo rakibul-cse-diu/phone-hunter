@@ -1,0 +1,15 @@
+.logo h1{
+    font-weight: 800;
+}
+
+
+/* search field Group  */
+#search-field-group{
+    width: 50%;
+}
+
+@media screen and (max-width: 668px) {
+    #search-field-group{
+        width: 75%;
+    }
+}

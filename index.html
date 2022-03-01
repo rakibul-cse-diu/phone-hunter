@@ -46,7 +46,7 @@
                         <h6 class="card-brand phone-brand"></h6>
                         <h6 class="card-release-date"></h6>
                         <h6 class="card-main-features">Main Features:
-                            <ol>
+                            <ol class="mt-2">
                                 <li id="chipset"></li>
                                 <li id="displaysize"></li>
                                 <li id="memory"></li>
@@ -57,9 +57,8 @@
                                 </li>
                             </ol>
                         </h6>
-
                         <h6 class="card-others mb-3">Others:
-                            <ol>
+                            <ol class="mt-2">
                                 <li id="bluetooth"></li>
                                 <li id="gps"></li>
                                 <li id="nfc"></li>
@@ -68,7 +67,6 @@
                                 <li id="wlan"></li>
                             </ol>
                         </h6>
-
                     </div>
                 </div>
             </div>
@@ -78,6 +76,11 @@
         <!-- Display Data  -->
         <div id="search-result" class="row g-4 ms-0 me-0 mt-3 mb-5">
 
+            <div class="more d-flex justify-content-end">
+                <button class="btn btn-md btn-outline-primary me-3" type="button" id="button-seemore"
+                    onclick="handleSeemore()">See
+                    more</button>
+            </div>
         </div>
 
 

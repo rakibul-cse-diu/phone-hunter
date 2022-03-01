@@ -1,8 +1,7 @@
-const noResult = document.getElementById("no-result");
-
 // Handle the search button
 const handleSearch = () => {
     const searchText = document.getElementById("search-field");
+    const noResult = document.getElementById("no-result");
     const url = `https://openapi.programming-hero.com/api/phones?search=${textNormalize(searchText.value)}`;
 
     fetch(url)
@@ -33,8 +32,10 @@ const displayData = (data) => {
     phoneDetails.style.display = "none";
 
     let selectedData = [];
+    let moreData = [];
     if (data.length > 20) {
         selectedData = data.slice(0, 20);
+        moreData = data.slice(20, data.length);
     }
     if (data.length < 20) {
         selectedData = data;
@@ -112,12 +113,12 @@ const displayPhoneDetails = (data) => {
         wlan.innerText = `WLAN: ${data.others.WLAN}`
     }
     if (!data.others) {
-        bluetooth.innerText = `Bluetooth: Undefined`
-        gps.innerText = `GPS: Undefined`
-        nfc.innerText = `NFC: Undefined`
-        radio.innerText = `Radio: Undefined`
-        usb.innerText = `USB: Undefined`
-        wlan.innerText = `WLAN: Undefined`
+        bluetooth.innerText = `Bluetooth: data not found`
+        gps.innerText = `GPS: data not found`
+        nfc.innerText = `NFC: data not found`
+        radio.innerText = `Radio: data not found`
+        usb.innerText = `USB: data not found`
+        wlan.innerText = `WLAN: data not found`
     }
 
 

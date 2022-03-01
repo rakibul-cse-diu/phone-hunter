@@ -1,3 +1,4 @@
+/* header  */
 .logo h1{
     font-weight: 800;
 }
@@ -14,6 +15,10 @@
     display: none;
 }
 
+/* See more  */
+#button-seemore{
+    display: none;
+}
 
 /* Phone details  */
 
@@ -23,6 +28,11 @@
 
 .details-card{
     background-color: rgb(238, 241, 241);
+}
+
+.card-main-features li, .card-others li{
+    font-weight: 400;
+    font-size: 14px;
 }
 
 

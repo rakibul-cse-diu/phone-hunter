@@ -39,11 +39,90 @@ const displayData = (data) => {
                     <div class="card-body">
                         <h5 class="card-title">Name: ${phone.phone_name}</h5>
                         <h6 class="card-brand mb-3">Brand: ${phone.brand}</h6>
-                        <button type="button" class="btn btn-primary">Details</button>
+                        <button onclick="loadPhoneDetails('${phone.slug}')" type="button" class="btn btn-primary">Details</button>
                     </div>
                 </div>
             `
         searchResult.appendChild(div);
-        console.log(phone);
+        // console.log(phone);
     });
+}
+
+
+const loadPhoneDetails = (id) => {
+    console.log(id);
+    const detailsUrl = `https://openapi.programming-hero.com/api/phone/${id}`
+    fetch(detailsUrl)
+        .then(res => res.json())
+        .then(data => displayPhoneDetails(data.data))
+}
+
+
+// display phone details
+const displayPhoneDetails = (data) => {
+    const phoneDetails = document.getElementById("phone-details");
+    const cardImage = document.querySelector(".details-img");
+    const cardTitle = document.querySelector(".phone-title");
+    const cardBrand = document.querySelector(".phone-brand");
+    const cardRelase = document.querySelector(".card-release-date");
+    const chipset = document.getElementById("chipset");
+    const display = document.getElementById("displaysize");
+    const memory = document.getElementById("memory");
+    const others = document.querySelector(".card-others");
+    const bluetooth = document.getElementById("bluetooth");
+    const gps = document.getElementById("gps");
+    const nfc = document.getElementById("nfc");
+    const radio = document.getElementById("radio");
+    const usb = document.getElementById("usb");
+    const wlan = document.getElementById("wlan");
+
+
+
+    cardImage.src = data.image;
+    cardTitle.innerText = `Name: ${data.name}`
+    cardBrand.innerText = `Brand: ${data.brand}`
+
+    if (data.releaseDate) {
+        cardRelase.innerText = `Release Date: ${data.releaseDate}`
+    }
+    if (!data.releaseDate) {
+        cardRelase.innerText = `Release Date: No release date found`
+    }
+
+    chipset.innerText = `Chip Set: ${data.mainFeatures.chipSet}`
+    display.innerText = `Display Size: ${data.mainFeatures.displaySize}`
+    memory.innerText = `Memory: ${data.mainFeatures.memory}`
+    displaySensors(data.mainFeatures.sensors);
+
+    if (data.others) {
+        bluetooth.innerText = `Bluetooth: ${data.others.Bluetooth}`
+        gps.innerText = `GPS: ${data.others.GPS}`
+        nfc.innerText = `NFC: ${data.others.NFC}`
+        radio.innerText = `Radio: ${data.others.Radio}`
+        usb.innerText = `USB: ${data.others.USB}`
+        wlan.innerText = `WLAN: ${data.others.WLAN}`
+    }
+    if (!data.others) {
+        others.innerText = "others: Others not found for this phone"
+    }
+
+    phoneDetails.style.display = "block";
+
+    console.log(data.others);
+
+}
+
+
+// display sensors
+const displaySensors = (sensorArray) => {
+    const sensorId = document.getElementById("sensor-id");
+
+    sensorArray.map(sensors => {
+        console.log(sensors)
+        const li = document.createElement("li");
+        li.classList.add("sensor");
+        li.innerText = `${sensors}`
+        sensorId.appendChild(li);
+    })
+
 }

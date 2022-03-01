@@ -28,6 +28,10 @@ const textNormalize = (text) => {
 // Display data
 const displayData = (data) => {
     const searchResult = document.getElementById("search-result");
+    const phoneDetails = document.getElementById("phone-details");
+    searchResult.textContent = '';
+    phoneDetails.style.display = "none";
+
     let selectedData = [];
     if (data.length > 20) {
         selectedData = data.slice(0, 20);
@@ -81,6 +85,8 @@ const displayPhoneDetails = (data) => {
     const usb = document.getElementById("usb");
     const wlan = document.getElementById("wlan");
 
+    phoneDetails.style.display = "block";
+
     cardImage.src = data.image;
     cardTitle.innerText = `Name: ${data.name}`
     cardBrand.innerText = `Brand: ${data.brand}`
@@ -106,10 +112,15 @@ const displayPhoneDetails = (data) => {
         wlan.innerText = `WLAN: ${data.others.WLAN}`
     }
     if (!data.others) {
-        others.innerText = "others: Others not found for this phone"
+        bluetooth.innerText = `Bluetooth: Undefined`
+        gps.innerText = `GPS: Undefined`
+        nfc.innerText = `NFC: Undefined`
+        radio.innerText = `Radio: Undefined`
+        usb.innerText = `USB: Undefined`
+        wlan.innerText = `WLAN: Undefined`
     }
 
-    phoneDetails.style.display = "block";
+
 
     console.log(data.others);
 

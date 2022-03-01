@@ -8,8 +8,22 @@
     width: 50%;
 }
 
+/* No result alert */
+.no-result{
+    width: 50%;
+    display: none;
+}
+
+
+
+
+/* Media query */
 @media screen and (max-width: 668px) {
     #search-field-group{
+        width: 75%;
+    }
+
+    .no-result{
         width: 75%;
     }
 }

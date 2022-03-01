@@ -8,7 +8,6 @@ const handleSearch = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if (!data.status) {
                 noResult.style.display = "block";
             }
@@ -29,7 +28,15 @@ const textNormalize = (text) => {
 // Display data
 const displayData = (data) => {
     const searchResult = document.getElementById("search-result");
-    data.forEach(phone => {
+    let selectedData = [];
+    if (data.length > 20) {
+        selectedData = data.slice(0, 20);
+    }
+    if (data.length < 20) {
+        selectedData = data;
+    }
+
+    selectedData.forEach(phone => {
         const div = document.createElement("div");
         div.classList.add("col-lg-4");
         div.classList.add("col-12");
@@ -44,13 +51,11 @@ const displayData = (data) => {
                 </div>
             `
         searchResult.appendChild(div);
-        // console.log(phone);
     });
 }
 
-
+// fetch phone details and dispaly
 const loadPhoneDetails = (id) => {
-    console.log(id);
     const detailsUrl = `https://openapi.programming-hero.com/api/phone/${id}`
     fetch(detailsUrl)
         .then(res => res.json())
@@ -75,8 +80,6 @@ const displayPhoneDetails = (data) => {
     const radio = document.getElementById("radio");
     const usb = document.getElementById("usb");
     const wlan = document.getElementById("wlan");
-
-
 
     cardImage.src = data.image;
     cardTitle.innerText = `Name: ${data.name}`
